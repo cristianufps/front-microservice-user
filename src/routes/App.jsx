@@ -1,8 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "../components/Login";
-
 import NotFound from "../components/NotFound";
-import LandingPage from "../Layouts/LandingPage";
+import LandingPage from "../layouts/LandingPage/index";
 
 const App = () => {
   return (
