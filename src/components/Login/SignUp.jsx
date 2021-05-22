@@ -141,6 +141,7 @@ export default function SignUp() {
                 variant="outlined"
                 labelId="Profile"
                 id="profile"
+                required
                 open={open}
                 onClose={handleSelectClose}
                 onOpen={handleSelectOpen}
