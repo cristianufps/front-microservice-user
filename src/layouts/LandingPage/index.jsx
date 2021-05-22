@@ -8,7 +8,7 @@ import { Header } from "../../components/LandingPage/header";
 import { Navigation } from "../../components/LandingPage/navigation";
 import { Services } from "../../components/LandingPage/services";
 import { Team } from "../../components/LandingPage/Team";
-import { Testimonials } from "../../components/LandingPage/testimonials";
+// import { Testimonials } from "../../components/LandingPage/testimonials";
 import JsonData from "../../data/data.json";
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
@@ -29,7 +29,7 @@ const LandingPage = () => {
       <About data={landingPageData.About} />
       <Services data={landingPageData.Services} />
       <Gallery />
-      <Testimonials data={landingPageData.Testimonials} />
+      {/* <Testimonials data={landingPageData.Testimonials} /> */}
       <Team data={landingPageData.Team} />
       <Contact data={landingPageData.Contact} />
     </div>
