@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import SmoothScroll from "smooth-scroll";
-import { About } from "../../components/about";
-import { Contact } from "../../components/contact";
-import { Features } from "../../components/features";
-import { Gallery } from "../../components/gallery";
-import { Header } from "../../components/header";
-import { Navigation } from "../../components/navigation";
-import { Services } from "../../components/services";
-import { Team } from "../../components/Team";
-import { Testimonials } from "../../components/testimonials";
+import { About } from "../../components/LandingPage/about";
+import { Contact } from "../../components/LandingPage/contact";
+import { Features } from "../../components/LandingPage/features";
+import { Gallery } from "../../components/LandingPage/gallery";
+import { Header } from "../../components/LandingPage/header";
+import { Navigation } from "../../components/LandingPage/navigation";
+import { Services } from "../../components/LandingPage/services";
+import { Team } from "../../components/LandingPage/Team";
+import { Testimonials } from "../../components/LandingPage/testimonials";
 import JsonData from "../../data/data.json";
 
 export const scroll = new SmoothScroll('a[href*="#"]', {

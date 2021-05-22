@@ -113,12 +113,12 @@
         "youtube": "youtube.com"
     },
     "Features": [{
-            "icon": "fa fa-comments-o",
+            "icon": "fa fa-search",
             "title": "Lorem ipsum",
             "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
         },
         {
-            "icon": "fa fa-bullhorn",
+            "icon": "fa fa-futbol-o",
             "title": "Lorem ipsum",
             "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
         },
@@ -128,7 +128,7 @@
             "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
         },
         {
-            "icon": "fa fa-magic",
+            "icon": "fa fa-youtube-play",
             "title": "Lorem ipsum",
             "text": "Lorem ipsum dolor sit amet placerat facilisis felis mi in tempus eleifend pellentesque natoque etiam."
         }
