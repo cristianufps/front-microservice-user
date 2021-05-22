@@ -1,18 +1,17 @@
+import { InputLabel, MenuItem, Select } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-// import Checkbox from "@material-ui/core/Checkbox";
 import Container from "@material-ui/core/Container";
 import CssBaseline from "@material-ui/core/CssBaseline";
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
-import { Link as Nav } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import React from "react";
+import SportsSoccerIcon from "@material-ui/icons/SportsSoccer";
+import React, { useState } from "react";
+import { Link as Nav } from "react-router-dom";
 
 function Copyright() {
   return (
@@ -49,13 +48,27 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
+  const [profileSelect, setProfileSelect] = useState("");
+  const [open, setOpen] = useState(false);
+
+  const handleSelectChange = (event) => {
+    setProfileSelect(event.target.value);
+  };
+
+  const handleSelectClose = () => {
+    setOpen(false);
+  };
+
+  const handleSelectOpen = () => {
+    setOpen(true);
+  };
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <SportsSoccerIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign up
@@ -90,6 +103,17 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                id="institution"
+                label="Name of your institution"
+                name="institution"
+                autoComplete="institution"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
@@ -107,6 +131,30 @@ export default function SignUp() {
                 id="password"
                 autoComplete="current-password"
               />
+            </Grid>
+            <Grid item xs={12}>
+              <InputLabel id="demo-controlled-open-select-label">
+                Profile
+              </InputLabel>
+              <Select
+                fullWidth
+                variant="outlined"
+                labelId="Profile"
+                id="profile"
+                open={open}
+                onClose={handleSelectClose}
+                onOpen={handleSelectOpen}
+                value={profileSelect}
+                onChange={handleSelectChange}
+              >
+                {/* Peticion de perfiles */}
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
             </Grid>
           </Grid>
           <Button

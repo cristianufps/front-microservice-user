@@ -1,4 +1,4 @@
 import axios from "axios";
 
 // Pendiente
-const urlUserService = "http://localhost:8100/perfil/";
+export const urlProfileService = "http://localhost:8101/perfil/";

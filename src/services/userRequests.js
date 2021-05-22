@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const urlUserService = "http://localhost:8100/usuarios/";
+export const urlUserService = "http://localhost:8100/usuarios/";
 
 export const getUsers = () => {
   axios.get(urlUserService);
