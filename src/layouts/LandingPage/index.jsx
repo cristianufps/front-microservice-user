@@ -9,7 +9,7 @@ import { Navigation } from "../../components/LandingPage/navigation";
 import { Services } from "../../components/LandingPage/services";
 import { Team } from "../../components/LandingPage/Team";
 // import { Testimonials } from "../../components/LandingPage/testimonials";
-import JsonData from "../../data/data.json";
+import JsonData from "../../data/dataLandingPage.json";
 
 export const scroll = new SmoothScroll('a[href*="#"]', {
   speed: 1000,
