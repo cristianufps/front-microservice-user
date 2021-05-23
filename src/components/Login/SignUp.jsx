@@ -10,8 +10,10 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import SportsSoccerIcon from "@material-ui/icons/SportsSoccer";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link as Nav } from "react-router-dom";
+import { getProfiles } from "../../services/profileRequest";
+import { createUser } from "../../services/userRequests";
 
 function Copyright() {
   return (
@@ -46,10 +48,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const initialState = {
+  documento: "",
+    name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    institution: "",
+}
+
 export default function SignUp() {
   const classes = useStyles();
   const [profileSelect, setProfileSelect] = useState("");
+  const [profiles, setProfiles] = useState([]);
   const [open, setOpen] = useState(false);
+  const [form, setForm] = useState(initialState);
+
+  const { documento, name, last_name, email, password, institution } = form;
+
+  const handleInputChange = (e) => {
+    // console.log(e)
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSelectChange = (event) => {
     setProfileSelect(event.target.value);
@@ -62,6 +85,32 @@ export default function SignUp() {
   const handleSelectOpen = () => {
     setOpen(true);
   };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    var body = {
+      documento: documento,
+      name: name,
+      last_name: last_name,
+      email: email,
+      password: password,
+      institution: institution,
+      profileId: profileSelect,
+    };
+
+    createUser(body)
+      .then((res) => {
+        alert("Usuario registrado con exito", res.data);
+        setForm(initialState);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getProfiles().then((res) => setProfiles(res.data));
+  }, []);
 
   return (
     <Container component="main" maxWidth="xs">
@@ -78,13 +127,15 @@ export default function SignUp() {
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"
-                name="firstName"
+                name="name"
                 variant="outlined"
                 required
                 fullWidth
                 id="firstName"
                 label="First Name"
                 autoFocus
+                value={name}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -94,8 +145,23 @@ export default function SignUp() {
                 fullWidth
                 id="lastName"
                 label="Last Name"
-                name="lastName"
+                name="last_name"
                 autoComplete="lname"
+                value={last_name}
+                onChange={handleInputChange}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                variant="outlined"
+                required
+                fullWidth
+                id="documento"
+                label="Document"
+                name="documento"
+                autoComplete="documento"
+                value={documento}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -107,6 +173,8 @@ export default function SignUp() {
                 label="Name of your institution"
                 name="institution"
                 autoComplete="institution"
+                value={institution}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -118,6 +186,8 @@ export default function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                value={email}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -130,6 +200,8 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                value={password}
+                onChange={handleInputChange}
               />
             </Grid>
             <Grid item xs={12}>
@@ -149,12 +221,15 @@ export default function SignUp() {
                 onChange={handleSelectChange}
               >
                 {/* Peticion de perfiles */}
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
+                {profiles
+                  .filter((item) => item.name !== "Administrador")
+                  .map((profile) => {
+                    return (
+                      <MenuItem key={profile.id} value={profile.id}>
+                        {profile.name}
+                      </MenuItem>
+                    );
+                  })}
               </Select>
             </Grid>
           </Grid>
@@ -164,6 +239,7 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleClick}
           >
             Sign Up
           </Button>

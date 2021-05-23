@@ -15,6 +15,8 @@ const App = () => {
           <Route exact path="/register" component={() => <SignUp />} />
           {/* Ruta privada */}
           <Route exact path="/dashboard" component={() => <Dashboard />} />
+          <Route exact path="/dashboard/perfil" component={() => <Dashboard />} />
+          <Route exact path="/dashboard/funcionalidad" component={() => <Dashboard />} />
           {/* ----- */}
           <Route exact component={() => <NotFound />} />
         </Switch>
